@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        h1{
+            text-align: center;
+            background-color: darkblue;
+            color: cornsilk;
+            margin: 0;
+            padding: 10px;
+        }
+        #watch{
+            text-align: center;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 30px;
+            margin-left: 40%;
+            margin-right: 40%;
+            margin-top: 10px;
+        }
+        #demo{
+            text-align: center;
+        }
+        button{
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(127, 255, 212, 0.27);
+            color: rgba(255, 85, 0, 0.937);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stop Watch</h1>
+
+    <div id="watch">00:00:00</div>
+
+    <div id="demo">
+        <button onclick="start()">start</button>
+        <button onclick="stop()">stop</button>
+        <button onclick="reset()">reset</button>
+    </div>
+ 
+    <script>
+       sec=0;
+       min=0;
+       hr=0;
+       function start() {
+        s = setInterval(() => {
+
+        if(min>=59)
+        {
+            hr++;
+            min=0;
+        }
+        else if(sec<59)
+        {
+            sec++;
+        }
+        else
+        {
+           sec=0;
+           min++;
+        }         
+         
+        let x=sec.toString().padStart(2,"0");
+        let y=min.toString().padStart(2,"0");
+        let z=hr.toString().padStart(2,"0");
+        document.getElementById("watch").innerHTML=z+":"+y+":"+x;
+        }, 100);
+        
+        }
+
+        function stop() {
+            clearInterval(s);
+        }
+
+        function reset()
+        {
+            sec=0;
+            min=0;
+            hr=0;
+            clearInterval(s);
+            let x=sec.toString().padStart(2,"0");
+            let y=min.toString().padStart(2,"0");
+            let z=hr.toString().padStart(2,"0");
+            document.getElementById("watch").innerHTML=z+":"+y+":"+x;
+        }
+    </script>
+</body>
+</html>
